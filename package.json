@@ -1,36 +1,52 @@
 {
-  "name": "webpack-starter-angular",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "keywords": [
-    "bundle",
-    "bundling",
-    "webpack",
-    "npm",
-    "angular"
-  ],
-  "author": "Timo Stollenwerk",
-  "license": "MIT",
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
+  "name": "----",
+  "version": "0.0.1",
+  "description": "------",
+  "main": "app/app.js",
+  "directories": {
+    "test": "test"
   },
+  "scripts": {
+    "analyze": "webpack --json | webpack-bundle-size-analyzer",
+    "clean": "npm cache clean && rimraf -- node_modules doc typings coverage public",
+    "build": "export NODE_ENV=dev && webpack",
+    "build:production": "cd public && rm -rf * && cd .. && export NODE_ENV=prod && webpack -p",
+    "deploy": "mv public/public/index.html public/index.html && firebase deploy",
+    "lint": "eslint src/ || true",
+    "lint:travis": "eslint src/",
+    "start": "webpack-dev-server --inline --port 8080 --content-base public/",
+    "test": "karma start",
+    "test:debug": "karma start karma.conf.js --log-level=debug --single-run=False",
+    "test:watch": "karma start karma.conf.js --auto-watch=true --single-run=False"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blong14/2508w.git"
+  },
+  "author": "Ben Long",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blong14/2508w/issues"
+  },
+  "homepage": "https://github.com/blong14/2508w#readme",
   "devDependencies": {
     "angular-mocks": "1.5.8",
     "babel-core": "6.3.26",
     "babel-loader": "6.1.0",
     "babel-polyfill": "6.3.14",
     "babel-preset-es2015": "6.1.18",
+    "chai": "^3.5.0",
     "css-loader": "~0.21.0",
     "eslint": "1.7.3",
     "eslint-config-angular": "0.4.0",
     "eslint-plugin-angular": "0.12.0",
-    "file-loader": "~0.8.4",
+    "file-loader": "^0.8.5",
     "html-webpack-plugin": "~1.7.0",
+    "image-webpack-loader": "^3.1.0",
+    "img-loader": "^1.3.1",
     "jade": "~1.11.0",
     "jade-loader": "~0.7.1",
+    "json-loader": "^0.5.4",
     "karma": "1.2.0",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "2.0.0",
@@ -39,6 +55,9 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.8.0",
     "mocha": "~2.3.0",
+    "ng-annotate": "^1.2.1",
+    "ng-annotate-loader": "^0.2.0",
+    "ng-annotate-webpack-plugin": "^0.1.3",
     "node-sass": "~3.3.3",
     "raw-loader": "~0.5.1",
     "rimraf": "~2.5.2",
@@ -47,32 +66,19 @@
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.6",
     "webpack": "~1.12.14",
+    "webpack-bundle-size-analyzer": "^2.3.0",
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "~0.14.0"
   },
   "dependencies": {
     "angular": "1.5.8",
-    "angular-sanitize": "1.5.8",
-    "angular-schema-form": "0.8.13",
-    "angular-schema-form-bootstrap": "0.2.0",
-    "angular-ui-bootstrap": "1.1.2",
-    "angular-ui-router": "0.2.18",
-    "bootstrap": "3.3.7",
+    "angular-animate": "1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-ui-router": "^0.3.2",
+    "foundation-sites": "^6.3.0",
+    "hawkular-apm-opentracing": "^0.1.5",
     "jquery": "2.2.4",
-    "lodash": "4.6.1",
-    "objectpath": "1.2.1",
-    "tv4": "1.2.7"
-  },
-  "scripts": {
-    "analyze": "webpack --json | webpack-bundle-size-analyzer",
-    "clean": "npm cache clean && rimraf -- node_modules doc typings coverage dist",
-    "build": "export NODE_ENV=dev && webpack",
-    "build:production": "export NODE_ENV=prod && webpack -p",
-    "lint": "eslint src/ || true",
-    "lint:travis": "eslint src/",
-    "start": "webpack-dev-server --inline --port 3000 --content-base dist/",
-    "test": "karma start",
-    "test:debug": "karma start karma.conf.js --log-level=debug --single-run=False",
-    "test:watch": "karma start karma.conf.js --auto-watch=true --single-run=False"
+    "opentracing": "^0.13.0",
+    "ui-router": "^1.0.0-alpha.3"
   }
 }
